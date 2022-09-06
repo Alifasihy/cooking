@@ -4,6 +4,11 @@ services:
   database:
     image: mongo:latest
     restart: always
+    networks:
+      - cooking
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: nimda
+networks:
+  # The presence of these objects is sufficient to define them
+  cooking: {}
