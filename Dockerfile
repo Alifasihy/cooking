@@ -9,6 +9,6 @@ COPY . .
 ENV port=3000
 ENV expressAppName='Cooking Match'
 
-ENTRYPOINT ['node', 'index.js']
+ENTRYPOINT ["node", "index.js"]
 
 EXPOSE 3000
