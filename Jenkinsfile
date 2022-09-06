@@ -10,9 +10,9 @@ pipeline {
     stage('Stage') {
       steps {
         input 'Do you want to stage this? (Click "Proceed" to continue)'
-	sh 'docker network inspect -f "{{range .Containers}}{{println .Name}}{{end}}" cooking_default|xargs -r docker rm -fv'
+	sh 'docker network inspect -f "{{range .Containers}}{{println .Name}}{{end}}" cooking_cooking|xargs -r docker rm -fv'
         sh 'docker-compose up --detach && sleep 100'
-	sh 'docker run --network cooking_default -d -p 3000:3000 registry:5000/cookingmatch:latest'
+	sh 'docker run --network cooking_cooking -d -p 3000:3000 registry:5000/cookingmatch:latest'
       }
     }
   }
