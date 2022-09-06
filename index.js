@@ -7,7 +7,7 @@ app.set('views', './views')
 app.set('view-engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.send('Hello Cook!')
+  res.render('index')
 })
 
 app.listen(port, () => {
