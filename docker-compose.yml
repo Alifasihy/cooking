@@ -11,4 +11,5 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: nimda
 networks:
   # The presence of these objects is sufficient to define them
+  # actual network names are prefixed with COMPOSE_PROJECT env var 
   cooking: {}
