@@ -12,7 +12,7 @@ app.set('view-engine', 'ejs')
 
 mongoose.connect('mongodb://admin:nimda@database:27017/root')
   .then(() => console.log('connected'))
-  .catch(() => console.log('error'))
+  .catch((err) => console.log('error: ' + err))
 
 const grocerySchema = new mongoose.Schema({
   name: String
@@ -21,7 +21,9 @@ const grocerySchema = new mongoose.Schema({
 const Grocery = new mongoose.model('Grocery', grocerySchema)
 
 const pepper = new Grocery({ name: 'Pepper' })
-pepper.save().then(() => console.log('data saved'))
+pepper.save()
+  .then(() => console.log('data saved'))
+  .catch(() => console.log('database err'))
 
 
 
