@@ -10,7 +10,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.set('views', './views')
 app.set('view-engine', 'ejs')
 
-mongoose.connect('mongodb://admin@nimda:database:27017/root')
+mongoose.connect('mongodb://admin:nimda@database:27017/root')
   .then(console.log('connected'))
   .catch(console.log('error'))
 
