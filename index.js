@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 
 app.get('/groceries', (req, res) => 
   Grocery.find({})
-  .then((r => res.send(r))))
+  .then((r => res.render('groceries.ejs', r))))
 
 
 
