@@ -14,10 +14,22 @@ mongoose.connect('mongodb://admin:nimda@database:27017/root')
   .then(console.log('connected'))
   .catch(console.log('error'))
 
+const grocerySchema = new mongoose.Schema({
+  name: String
+})
+
+const Grocery = new mongoose.model('Grocery', grocerySchema)
+
+const pepper = new Grocery({ name: 'Pepper' })
+await pepper.save()
+
+
+
 
 
 app.get('/', (req, res) => {
   res.render('index.ejs')
+
 })
 
 
