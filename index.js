@@ -10,29 +10,30 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.set('views', './views')
 app.set('view-engine', 'ejs')
 
-mongoose.connect('mongodb://admin:nimda@database:27017')
-  .then(() => console.log('connected'))
-  .catch((err) => console.log('error: ' + err))
-
 const grocerySchema = new mongoose.Schema({
   name: String
 })
 
 const Grocery = new mongoose.model('Grocery', grocerySchema)
 
-const pepper = new Grocery({ name: 'Pepper' })
-pepper.save()
-  .then(() => console.log('data saved'))
-  .catch(() => console.log('database err'))
-
-
-
-
+mongoose.connect('mongodb://admin:nimda@database:27017')
+  .then(() => console.log('connected'))
+  .then(() => {
+    let pepper = new Grocery({ name: 'Pepper' })
+    pepper.save()
+    .then(() => console.log('data saved'))
+    .catch((err) => console.log('save error: ' + err))
+    return pepper
+  })
+  .catch((err) => console.log('database error: ' + err))
 
 app.get('/', (req, res) => {
   res.render('index.ejs')
 
 })
+
+app.get('/groceries', (req, res) => 
+  Grocery.find({}).then((r => res.send(r))))
 
 
 
