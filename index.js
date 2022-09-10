@@ -41,9 +41,9 @@ app.get('/groceries', (req, res) =>
   .then((gs => res.render('groceries.ejs', { gs, baseURL }))))
 
 app.delete('/groceries/:id', (req, res) => {
-	Grocery.deleteOne({ _id: {$eq: req.params.id } })
-	.then(() => {
-          console.log('deleted')
+	Grocery.findByIdAndDelete(req.params.id)
+	.then((x) => {
+          console.log(x + ' deleted')
 	  res.send(200)
 	})
 	.catch((err) => console.log('delete error' + err))
