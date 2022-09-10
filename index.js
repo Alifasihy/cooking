@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const app = express()
 const port = process.env.port || 3000
 const appName= process.env.expressAppName || 'Cooking Match'
-const dbConnectionString = process.env.db || 'mongodb://admin:nimda@localhost:27017'
+const dbConnectionString = process.env.db || 'mongodb://admin:nimda@localhost:3000'
 const baseURL = process.env.baseURL || "http://localhost:3000"
 const path = require('path')
 

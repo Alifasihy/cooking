@@ -17,7 +17,7 @@
     "expressjs",
     "mongodb"
   ],
-  "author": "Alireza Rad",
+  "author": "Ali fasihy",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "ejs": "^3.1.8",
