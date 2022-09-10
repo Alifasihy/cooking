@@ -22,13 +22,13 @@ const Grocery = new mongoose.model('Grocery', grocerySchema)
 
 mongoose.connect(dbConnectionString)
   .then(() => console.log('connected'))
-  .then(() => {
-    let pepper = new Grocery({ name: 'Pepper', calorie: 123 })
-    pepper.save()
-    .then(() => console.log('data saved'))
-    .catch((err) => console.log('save error: ' + err))
-    return pepper
-  })
+  // .then(() => {
+  //   let pepper = new Grocery({ name: 'Pepper', calorie: 123 })
+  //   pepper.save()
+  //   .then(() => console.log('data saved'))
+  //   .catch((err) => console.log('save error: ' + err))
+  //   return pepper
+  // })
   .catch((err) => console.log('database error: ' + err))
 
 app.get('/', (req, res) => {
