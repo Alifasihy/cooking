@@ -1,7 +1,101 @@
-<% groceries.forEach(g => {
-  <dt> Name </dt>: 
-  <dd> <%= g.name %> </dd>
-  <dt> Calorie </dt>: 
-  <dd> <%= g.calorie %> </dd>
-}) %>
+<%- include('partials/header.ejs'); %>
+<dl>
+<% gs.forEach(g => { %>
+  <div id="g<%= g.id %>" style="border:solid black 1px; margin-bottom: 2px;">
+    <dt> Name<span>:</span> </dt>  
+    <dd> <%= g.name %> </dd>
+    <dt> Calorie<span>:</span> </dt> 
+    <dd> <%= g.calorie %> </dd>
+    <button onClick="openIt('<%= g.id %>')">edit</button>
+    <button onClick="deleteIt('<%= g.id %>')">delete</button>
+    <form id="myModal<%= g.id %>" class="modal">
+      <div class="modal-content">
+        <span onClick="closeIt('<%= g.id %>')" class="close">&times;</span>
+        <input id="putName<%= g.id %>" type="text" placeholder="<%= g.name %>">
+        <input id="putCalorie<%= g.id %>" type="text" placeholder="<%= g.calorie %>"> 
+        <button onClick="put('<%= g.id %>')" type="button">edit</button>    
+      </div>
+    </form>
+  </div>
+<% }) %>
+</dl>
 
+<%- include('partials/footer.ejs'); %>
+<script>
+let hidden = true;
+function openIt(id) {
+console.log(id)
+  let modal = document.getElementById('myModal' + id)
+  modal.style.display='block'
+}
+
+function closeIt(id) {
+console.log(id)
+  let modal = document.getElementById('myModal' + id)
+  modal.style.display = "none";
+}
+
+function put(id) {
+console.log(id)
+  const xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+  xmlhttp.open("PUT", baseURL + "/groceries/" + id);
+  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  let name = document.getElementById('putName' + id).value
+  let calorie = document.getElementById('putCalorie' + id).value
+  xmlhttp.send(JSON.stringify({ name, calorie }));
+  closeIt(id)
+  
+}
+
+function deleteIt(id) {
+  console.log('delete it')
+  const req = new XMLHttpRequest();
+  // req.addEventListener("load", reqListener);
+  req.open("DELETE", baseURL + "/groceries/" + id);
+  req.send();
+  window.location.reload()
+}
+
+</script>
+
+<style>
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+</style>

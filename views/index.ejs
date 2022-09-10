@@ -4,5 +4,33 @@
     <link rel="stylesheet" href="styles.css"> 
 
 </h1>
+
+<form action="">
+<p>Add A New Gerocery Item</p>
+<div>
+<label for="">Name</label>
+<input id="inputName" type="text">
+</div>
+<div>
+<label for="">Calorie</label>
+<input id="inputCalorie" type="number">
+</div>
+<button onClick="postIt()" type="button">Add</button>
+</form>
 <%- include('partials/footer.ejs'); %>
 
+
+<script>
+
+function postIt() {
+  console.log('hi there')
+  const xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+  xmlhttp.open("POST", baseURL + "/groceries/");
+  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  let name = document.getElementById("inputName").value
+  let calorie = document.getElementById("inputCalorie").value
+  xmlhttp.send(JSON.stringify({ name, calorie }));
+
+}
+
+</script>
