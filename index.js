@@ -32,13 +32,13 @@ mongoose.connect(dbConnectionString)
   .catch((err) => console.log('database error: ' + err))
 
 app.get('/', (req, res) => {
-  res.render('index.ejs', {baseURL: process.env.baseURL})
+  res.render('index.ejs', {baseURL})
 
 })
 
 app.get('/groceries', (req, res) => 
   Grocery.find({})
-  .then((gs => res.render('groceries.ejs', { gs, baseURL: process.env.baseURL }))))
+  .then((gs => res.render('groceries.ejs', { gs, baseURL }))))
 
 app.delete('/groceries/:id', (req, res) => {
 	Grocery.deleteOne({ _id: {$eq: req.params.id } })

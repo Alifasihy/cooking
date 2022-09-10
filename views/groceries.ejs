@@ -38,7 +38,7 @@ console.log(id)
 function put(id) {
 console.log(id)
   const xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-  xmlhttp.open("PUT", baseURL + "/groceries/" + id);
+  xmlhttp.open("PUT", <%=baseURL%> + "/groceries/" + id);
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   let name = document.getElementById('putName' + id).value
   let calorie = document.getElementById('putCalorie' + id).value
@@ -51,7 +51,7 @@ function deleteIt(id) {
   console.log('delete it')
   const req = new XMLHttpRequest();
   // req.addEventListener("load", reqListener);
-  req.open("DELETE", baseURL + "/groceries/" + id);
+  req.open("DELETE", <%=baseURL%> + "/groceries/" + id);
   req.send();
   window.location.reload()
 }
